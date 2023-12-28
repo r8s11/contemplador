@@ -1,0 +1,24 @@
+---
+import Navbar from "../components/Navbar.astro";
+import Foorter from "../components/Footer.astro";
+const { title = "" } = Astro.props;
+import { SITE_DESCRIPTION, SITE_TITLE } from "../constants";
+---
+
+<html lang="en">
+  <head>
+    <meta name="description" content={SITE_DESCRIPTION} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{SITE_TITLE} - {title}</title>
+  </head>
+  
+  <body class="">
+    <Navbar />
+    <section class="container mx-auto max-w-screen-xl mt-10 px-8">
+        <slot />
+    </section>
+    <Foorter />
+  </body>
+</html>
