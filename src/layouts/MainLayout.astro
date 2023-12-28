@@ -1,5 +1,5 @@
 ---
-import Navbar from "../components/Navbar.astro";
+import Nav from "../components/Nav.astro"
 import Foorter from "../components/Footer.astro";
 const { title = "" } = Astro.props;
 import { SITE_DESCRIPTION, SITE_TITLE } from "../constants";
@@ -15,7 +15,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../constants";
   </head>
   
   <body class="">
-    <Navbar />
+    <Nav />
     <section class="container mx-auto max-w-screen-xl mt-10 px-8">
         <slot />
     </section>
