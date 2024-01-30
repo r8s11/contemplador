@@ -1,5 +1,5 @@
 ---
-import Nav from "../components/Nav.astro"
+import Nav from "../components/Nav.astro";
 import Foorter from "../components/Footer.astro";
 const { title = "" } = Astro.props;
 import { SITE_DESCRIPTION, SITE_TITLE } from "../constants";
@@ -13,11 +13,11 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../constants";
     <meta name="generator" content={Astro.generator} />
     <title>{SITE_TITLE} - {title}</title>
   </head>
-  
+
   <body class="">
     <Nav />
     <section class="container mx-auto max-w-screen-xl mt-10 px-8">
-        <slot />
+      <slot />
     </section>
     <Foorter />
   </body>
