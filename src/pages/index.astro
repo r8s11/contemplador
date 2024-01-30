@@ -1,7 +1,22 @@
 ---
 import MainLayout from "../../src/layouts/MainLayout.astro";
+import { getCollection } from "astro:content";
+import ArticleCard from "../components/ArticleCard.astro";
+import type { CollectionEntry } from "astro:content";
+import { HOMEPAGE_ARTICLE_LIMIT } from "../constants";
+
+const allBlogArticles: CollectionEntry<"blog">[] = await getCollection("blog");
+const otherArticles: CollectionEntry<"blog">[] = allBlogArticles;
 ---
 
-<MainLayout title="Welcome">
+<MainLayout>
   <h1 class="text-2xl">El Contemplador</h1>
+
+  <div class="grid grid-cols-1 gap-4">
+    {
+      otherArticles
+        .slice(0, HOMEPAGE_ARTICLE_LIMIT)
+        .map((article) => <ArticleCard article={article} />)
+    }
+  </div>
 </MainLayout>
