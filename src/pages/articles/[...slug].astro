@@ -1,10 +1,7 @@
 ---
-import type { GetStaticPaths } from "astro";
 import MainLayout from "../../layouts/MainLayout.astro";
-import { getCollection, getEntry } from "astro:content";
-import type { CollectionEntry } from "astro:content";
+import { getEntry } from "astro:content";
 import Tags from "../../components/Tags.astro";
-import { UnhandledRejection } from "../../../node_modules/astro/dist/core/errors/errors-data";
 import { formatDate } from "../../utils";
 
 const { slug } = Astro.params;
@@ -20,17 +17,6 @@ if (entry === undefined) {
 }
 
 const { Content } = await entry.render();
-
-export async function getStaticPaths() {
-  const allBlogArticles: CollectionEntry<"blog">[] =
-    await getCollection("blog");
-  return allBlogArticles.map((entry) => ({
-    params: {
-      slug: entry.slug,
-    },
-    props: {entry}
-  }));
-}
 ---
 
 <MainLayout>
