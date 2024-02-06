@@ -7,4 +7,4 @@ tags: ['tech','dancing','parenting']
 slug: first-post
 ---
 
-Content
+Content - this is just text

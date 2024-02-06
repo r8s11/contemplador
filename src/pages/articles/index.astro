@@ -3,10 +3,10 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 import SearchForm from "../../components/SearchForm.astro";
 import Pagination from "../../components/Pagination.astro";
-import { CollectionKey, ContentCollectionKey, getCollection } from "astro:content";
+import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { ARTICLES_PER_PAGE } from "../../constants";
-import { AstroAssets } from "astro:assets";
+
 
 const currentPage: number | null = +Astro.url.searchParams.get('page')! || 1;
 
