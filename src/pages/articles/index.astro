@@ -28,7 +28,7 @@ const articlesForPage: CollectionEntry<'blog'>[] = allBlogArticles.slice((curren
 
 <br>
 
-<div class="grid grid-cols-1 gap-4 sm:grid-col-3">
+<div class="grid grid-cols-3 gap-4 sm:grid-col-3">
     {articlesForPage.map(article => (
         <ArticleCard article={article} />
 
