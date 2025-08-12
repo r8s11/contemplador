@@ -57,3 +57,16 @@
     </div>
   </div>
 </nav>
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.querySelector(
+      '[data-collapse-toggle="navbar-default"]'
+    );
+    const menu = document.getElementById("navbar-default");
+    if (btn && menu) {
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+    }
+  });
+</script>
