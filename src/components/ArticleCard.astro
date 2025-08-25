@@ -1,6 +1,6 @@
 ---
-import { formatDate } from "../utils";
 import type { CollectionEntry } from "astro:content";
+import { formatDate } from "../utils";
 import Tags from "./Tags.astro";
 
 const { article } = Astro.props;
@@ -10,14 +10,22 @@ interface Props {
 }
 ---
 
-<div class="max-w-md  mt-10">
-  <div class="flex bg-slate-200 rounded-lg overflow-hidden shadow-lg">
-    
+<div class="max-w-md mt-10">
+  <div
+    class="flex bg-light-200 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+  >
     <div class="p-6">
-      <h2 class="text-2xl font-semibold mb-2">
-        <a href={"/articles/" + article.slug}>{article.data.title}</a>
+      <h2 class="text-2xl font-semibold mb-2 text-primary">
+        <a
+          href={"/articles/" + article.slug}
+          class="hover:text-accent transition-colors duration-200"
+        >
+          {article.data.title}
+        </a>
       </h2>
-      <p class="text-gray-600 text-sm mb-4">{formatDate(article.data.pubDate)}</p>
+      <p class="text-secondary text-sm mb-4">
+        {formatDate(article.data.pubDate)}
+      </p>
       <Tags tags={article.data.tags} />
     </div>
   </div>

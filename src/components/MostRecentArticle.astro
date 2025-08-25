@@ -12,29 +12,23 @@ interface Props {
 <div class="relative inline-block w-full cursor-pointer rounded-2xl">
   <a href={"/articles/" + article.slug}>
     <!-- Background placeholder -->
-    <div class="w-full bg-indigo-200 h-40 rounded-2xl"></div>
+    <div class="w-full bg-light-300 h-40 rounded-2xl"></div>
 
     <!-- "Latest" badge -->
     <div
-      class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg z-10"
-    >
-      Latest
-    </div>
-
-    <div
-      class="absolute inset-0 flex flex-col items-center justify-center bg-indigo-900 opacity-80 hover:opacity-75 transition duration-300 ease-in-out text-white text-center rounded-2xl"
+      class="absolute inset-0 flex flex-col items-center justify-center bg-primary opacity-85 hover:opacity-80 transition duration-300 ease-in-out text-light text-center rounded-2xl"
     >
       <div>
-        <h2 class="text-2xl font-semibold sm:text-3xl mb-2">
+        <h2 class="text-2xl font-semibold sm:text-3xl mb-2 text-light-50">
           {article.data.title}
         </h2>
-        <p class="text-lg mt-2 text-indigo-200">
+        <p class="text-lg mt-2 text-light-200">
           {formatDate(article.data.pubDate)}
         </p>
         <div class="flex mt-4 justify-center flex-wrap gap-2">
           {
             article.data.tags.map((tag) => (
-              <span class="px-2 py-1 border border-indigo-300 text-white rounded-full text-xs hover:bg-indigo-600 transition-colors">
+              <span class="px-2 py-1 border border-light-300 text-light-100 rounded-full text-xs hover:bg-secondary-600 transition-colors">
                 {tag}
               </span>
             ))

@@ -1,8 +1,8 @@
 ---
-title: 'draft'
+title: 'Draft-Dancing'
 pubDate: 2025-08-30
 author: 'Roosevelt'
-image: 'image1.png'
-tags: ['tech', 'hardware']
+image: ""
+tags: ['Human', 'Life', '🕺🏽']
 slug: Dancing
 ---

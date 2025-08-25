@@ -1,47 +1,104 @@
 ---
-import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import { capitalize } from "../utils";
 
-const allBlogArticles: CollectionEntry<'blog'>[] = await getCollection('blog');
+// Filter out draft articles
+const allBlogArticles: CollectionEntry<"blog">[] = await getCollection(
+  "blog",
+  (entry) => {
+    return !entry.data.title.startsWith("Draft");
+  }
+);
 
-const tags: string[] = allBlogArticles.flatMap((article: any) => article.data.tags);
-
+const tags: string[] = allBlogArticles.flatMap((article) => article.data.tags);
 const uniqueTags: string[] = [...new Set(tags)];
 ---
 
-<footer class="bg-indigo-600 text-white">
-  <div class="container mx-auto mt-8 max-w-screen-xl px-8">
+<footer class="bg-primary text-light">
+  <div class="container mx-auto mt-8 max-w-screen-xl px-8 py-8">
     <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      <div class="mt-6">
-        <h3 class="text-lg font-semibold mb-4">About</h3>
-        <p class="text-white text-sm">
-            El Contemplador represents Roosevelt Segura's digital sanctuary where web development meets personal reflection. This platform serves as a conduit for sharing technical insights, development practices, and the evolving landscape of modern web technologies. When not immersed in code, Roosevelt embraces life as a devoted father, passionate dancer, and curious observer of human nature and consciousness.
+      <div>
+        <h3 class="text-lg font-semibold mb-4 text-light-50">About</h3>
+        <p class="text-light-200 text-sm leading-relaxed">
+          El Contemplador represents Roosevelt Segura's digital sanctuary where
+          web development meets personal reflection. This platform serves as a
+          conduit for sharing technical insights, development practices, and the
+          evolving landscape of modern web technologies. When not immersed in
+          code, Roosevelt embraces life as a devoted father, passionate dancer,
+          and curious observer of human nature and consciousness.
         </p>
       </div>
-      <div class="mt-6">
-        <h3 class="text-xl font-semibold mb-4">Categories</h3>
-        <ul class="text-white text-sm">
+
+      <div>
+        <h3 class="text-lg font-semibold mb-4 text-light-50">Categories</h3>
+        <ul class="text-light-200 text-sm space-y-2">
           {
             uniqueTags.map((tag) => (
-              <li class="mb-2">
-                <a href={'/articles/tag/' + tag}>#{capitalize(tag)}</a>
+              <li>
+                <a
+                  href={`/articles/tag/${tag}`}
+                  class="hover:text-accent-200 transition-colors duration-200"
+                >
+                  #{capitalize(tag)}
+                </a>
               </li>
             ))
           }
         </ul>
       </div>
-      <div class="mt-6">
-        <h3 class="text-xl font-semibold mb-4">Contact</h3>
-        <ul class="text-white text-sm">
-            <li class="mb-2"><a href="#">Email</a></li>
-            <li class="mb-2"><a href="#">Facebook</a></li>
-            <li class="mb-2"><a href="#">Instagram</a></li>
-            <li class="mb-2"><a href="#">Linkedin</a></li>
-            <li class="mb-2"><a href="#">Twitter</a></li>
+
+      <div>
+        <h3 class="text-lg font-semibold mb-4 text-light-50">Contact</h3>
+        <ul class="text-light-200 text-sm space-y-2">
+          <li>
+            <a
+              href="mailto:roosevelt@contemplador.dev"
+              class="hover:text-accent-200 transition-colors duration-200"
+            >
+              Email
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="hover:text-accent-200 transition-colors duration-200"
+            >
+              Facebook
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="hover:text-accent-200 transition-colors duration-200"
+            >
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="hover:text-accent-200 transition-colors duration-200"
+            >
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="hover:text-accent-200 transition-colors duration-200"
+            >
+              Twitter
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </div>
-  <p class="text-end text-xs">Roosevelt Segura</p>
+
+  <div class="border-t border-secondary-600 mt-8 pt-4 pb-4">
+    <p class="text-center text-xs text-light-300">
+      © {new Date().getFullYear()} Roosevelt Segura. All rights reserved.
+    </p>
+  </div>
 </footer>

@@ -2,26 +2,26 @@
 
 ---
 
-<form id="search-form" class="flex item-center" action="/articles/search">
+<form id="search-form" class="flex items-center" action="/articles/search">
   <label for="search-input" class="sr-only">Search</label>
   <div class="relative w-full">
     <input
       type="text"
       id="query"
       name="query"
-      class="bg-gray-50 border boder-gray-300 text-gray-900 tx-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block w-full p-2.5"
+      class="bg-light-100 border border-neutral-300 text-primary text-sm rounded-lg focus:ring-accent-500 focus:border-accent-500 block w-full p-2.5 placeholder-secondary"
       placeholder="Search for articles..."
       required
     />
   </div>
   <button
     type="submit"
-    class="p-2.5 ms-2 text-sm font-medium text-white bg-indigo-700 rounded-lg border bordedr-indigo-700 hover:border-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300"
+    class="p-2.5 ms-2 text-sm font-medium text-light bg-accent rounded-lg border border-accent hover:bg-accent-600 hover:border-accent-600 focus:ring-4 focus:outline-none focus:ring-accent-300 transition-colors duration-200"
   >
     <svg
       class="w-4 h-4"
       aria-hidden="true"
-      xmlns="http://www.w3/org/2000/svg"
+      xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 20 20"
     >
@@ -30,8 +30,8 @@
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-width="2"
-        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 02"></path>
-      <span class="sr-only">Search</span>
+        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"></path>
     </svg>
+    <span class="sr-only">Search</span>
   </button>
 </form>

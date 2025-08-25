@@ -1,14 +1,31 @@
-<nav class="bg-gray-600 text-white">
+---
+import { getCollection } from "astro:content";
+
+// Filter out draft articles
+const allBlogArticles = await getCollection("blog", (entry) => {
+  return !entry.data.title.startsWith("Draft");
+});
+
+const tags = allBlogArticles.flatMap((article) => article.data.tags);
+const uniqueTags = [...new Set(tags)];
+---
+
+<nav class="bg-primary text-light shadow-lg">
   <div
     class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
   >
-    <a href="/" class="flex item-center space-x-3 rtl:space=x-reverse"
-      >El Contemplador
+    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <span
+        class="caveat-medium text-4xl font-normal text-regular hover:text-accent-200 transition-colors duration-200"
+      >
+        El Contemplador
+      </span>
     </a>
+
     <button
       data-collapse-toggle="navbar-default"
       type="button"
-      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+      class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-light rounded-lg md:hidden hover:bg-secondary-600 focus:outline-none focus:ring-2 focus:ring-accent-500 transition-colors duration-200"
       aria-controls="navbar-default"
       aria-expanded="false"
     >
@@ -28,35 +45,80 @@
           d="M1 1h15M1 7h15M1 13h15"></path>
       </svg>
     </button>
+
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
       <ul
-        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 text-white rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0"
+        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-secondary-600 text-light rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0"
       >
         <li>
           <a
             href="/"
-            class="block py-2 px-3 rounded md:p-0 hover:text-indigo-400"
-            aria-current="page">Home</a
+            class="block py-2 px-3 rounded md:p-0 hover:text-accent-200 transition-colors duration-200"
+            aria-current="page"
           >
+            Home
+          </a>
         </li>
         <li>
           <a
             href="/articles"
-            class="block py-2 px-3 rounded md:p-0 hover:text-indigo-400"
-            >All Articles</a
+            class="block py-2 px-3 rounded md:p-0 hover:text-accent-200 transition-colors duration-200"
           >
+            All Articles
+          </a>
         </li>
+
+        <!-- Categories Dropdown -->
+        <li class="relative group">
+          <button
+            class="block py-2 px-3 rounded md:p-0 hover:text-accent-200 transition-colors duration-200 flex items-center"
+          >
+            Categories
+            <svg
+              class="w-4 h-4 ml-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+
+          <div
+            class="absolute left-0 mt-2 w-48 bg-primary border border-secondary-600 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+          >
+            <div class="py-2">
+              {
+                uniqueTags.slice(0, 8).map((tag) => (
+                  <a
+                    href={`/articles/tag/${tag}`}
+                    class="block px-4 py-2 text-sm text-light hover:bg-secondary-600 hover:text-accent-200 transition-colors duration-200"
+                  >
+                    #{tag}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+        </li>
+
         <li>
           <a
             href="/about"
-            class="block py-2 px-3 rounded md:p-0 hover:text-indigo-400"
-            >About</a
+            class="block py-2 px-3 rounded md:p-0 hover:text-accent-200 transition-colors duration-200"
           >
+            About
+          </a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
     const btn = document.querySelector(
