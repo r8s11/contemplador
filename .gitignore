@@ -1,1 +1,3 @@
 node_modules
+.amplify-hosting
+content/blog/Draft*

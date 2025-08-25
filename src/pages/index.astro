@@ -7,12 +7,12 @@ import { HOMEPAGE_ARTICLE_LIMIT } from "../constants";
 import SearchForm from "../components/SearchForm.astro";
 import MostRecentArticle from "../components/MostRecentArticle.astro";
 
-
-
 const allBlogArticles: CollectionEntry<"blog">[] = await getCollection("blog");
 const otherArticles: CollectionEntry<"blog">[] = allBlogArticles.slice(1);
-
-const mostRecentArticle: CollectionEntry<'blog'> = allBlogArticles[0];
+const mostRecentArticle: CollectionEntry<"blog"> = allBlogArticles.sort(
+  (a, b) =>
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+)[0];
 ---
 
 <MainLayout>

@@ -1,35 +1,45 @@
 ---
-import { formatDate } from "../utils";
 import type { CollectionEntry } from "astro:content";
+import { formatDate } from "../utils";
 
 const { article } = Astro.props;
 
 interface Props {
-  article: CollectionEntry<'blog'>;
+  article: CollectionEntry<"blog">;
 }
 ---
 
-<div class="relative inline-block w-full  cursor-pointer rounded-2xl">
+<div class="relative inline-block w-full cursor-pointer rounded-2xl">
   <a href={"/articles/" + article.slug}>
-    <!-- This is the  -->
-    <div class="w-full bg-indigo-200 h-40 rounded-2xl" ></div>
-    
+    <!-- Background placeholder -->
+    <div class="w-full bg-indigo-200 h-40 rounded-2xl"></div>
+
+    <!-- "Latest" badge -->
+    <div
+      class="absolute top-3 left-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg z-10"
+    >
+      Latest
+    </div>
+
     <div
       class="absolute inset-0 flex flex-col items-center justify-center bg-indigo-900 opacity-80 hover:opacity-75 transition duration-300 ease-in-out text-white text-center rounded-2xl"
     >
       <div>
-        <h2 class="text-2xl font-semibold sm:text-3xl">
-            {article.data.title}
+        <h2 class="text-2xl font-semibold sm:text-3xl mb-2">
+          {article.data.title}
         </h2>
-        <p class="text-l mt-4">{formatDate(article.data.pubDate)}</p>
-        <div class="flex m-2 justify-center ">
-            {article.data.tags.map(tag => (
-              <span
-               class="px-2 py-1 border text-white rounded-full text-xs mr-2 "
-               >{tag}</span
-             >
-            ))}
-           </div>
+        <p class="text-lg mt-2 text-indigo-200">
+          {formatDate(article.data.pubDate)}
+        </p>
+        <div class="flex mt-4 justify-center flex-wrap gap-2">
+          {
+            article.data.tags.map((tag) => (
+              <span class="px-2 py-1 border border-indigo-300 text-white rounded-full text-xs hover:bg-indigo-600 transition-colors">
+                {tag}
+              </span>
+            ))
+          }
+        </div>
       </div>
     </div>
   </a>
