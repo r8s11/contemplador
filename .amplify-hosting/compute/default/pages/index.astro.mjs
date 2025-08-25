@@ -1,10 +1,10 @@
 /* empty css                                 */
 import { c as createComponent, b as createAstro, m as maybeRenderHead, d as addAttribute, a as renderTemplate, r as renderComponent } from '../chunks/astro/server_D6HJHOr6.mjs';
 import 'kleur/colors';
-import { f as formatDate, $ as $$MainLayout, H as HOMEPAGE_ARTICLE_LIMIT } from '../chunks/MainLayout_S6Wz4lDU.mjs';
-import { g as getCollection } from '../chunks/_astro_content_5VslL6CT.mjs';
-import { $ as $$ArticleCard } from '../chunks/ArticleCard_BWJTqR-e.mjs';
-import { $ as $$SearchForm } from '../chunks/SearchForm_CvhqR_Bb.mjs';
+import { f as formatDate, $ as $$MainLayout, H as HOMEPAGE_ARTICLE_LIMIT } from '../chunks/MainLayout_XdRD5GnF.mjs';
+import { g as getCollection } from '../chunks/_astro_content_CZTV9l0n.mjs';
+import { $ as $$ArticleCard } from '../chunks/ArticleCard_CT7fS5pm.mjs';
+import { $ as $$SearchForm } from '../chunks/SearchForm_BI-w0vjS.mjs';
 import 'clsx';
 export { renderers } from '../renderers.mjs';
 
@@ -13,13 +13,20 @@ const $$MostRecentArticle = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$MostRecentArticle;
   const { article } = Astro2.props;
-  return renderTemplate`${maybeRenderHead()}<div class="relative inline-block w-full  cursor-pointer rounded-2xl"> <a${addAttribute("/articles/" + article.slug, "href")}> <!-- This is the  --> <div class="w-full bg-indigo-200 h-40 rounded-2xl"></div> <div class="absolute inset-0 flex flex-col items-center justify-center bg-indigo-900 opacity-80 hover:opacity-75 transition duration-300 ease-in-out text-white text-center rounded-2xl"> <div> <h2 class="text-2xl font-semibold sm:text-3xl"> ${article.data.title} </h2> <p class="text-l mt-4">${formatDate(article.data.pubDate)}</p> <div class="flex m-2 justify-center "> ${article.data.tags.map((tag) => renderTemplate`<span class="px-2 py-1 border text-white rounded-full text-xs mr-2 ">${tag}</span>`)} </div> </div> </div> </a> </div>`;
+  return renderTemplate`${maybeRenderHead()}<div class="relative inline-block w-full cursor-pointer rounded-2xl"> <a${addAttribute("/articles/" + article.slug, "href")}> <!-- Background placeholder --> <div class="w-full bg-light-300 h-40 rounded-2xl"></div> <!-- "Latest" badge --> <div class="absolute inset-0 flex flex-col items-center justify-center bg-primary opacity-85 hover:opacity-80 transition duration-300 ease-in-out text-light text-center rounded-2xl"> <div> <h2 class="text-2xl font-semibold sm:text-3xl mb-2 text-light-50"> ${article.data.title} </h2> <p class="text-lg mt-2 text-light-200"> ${formatDate(article.data.pubDate)} </p> <div class="flex mt-4 justify-center flex-wrap gap-2"> ${article.data.tags.map((tag) => renderTemplate`<span class="px-2 py-1 border border-light-300 text-light-100 rounded-full text-xs hover:bg-secondary-600 transition-colors"> ${tag} </span>`)} </div> </div> </div> </a> </div>`;
 }, "C:/Users/rsegura/github/contemplador/src/components/MostRecentArticle.astro", void 0);
 
 const $$Index = createComponent(async ($$result, $$props, $$slots) => {
-  const allBlogArticles = await getCollection("blog");
+  const allBlogArticles = await getCollection(
+    "blog",
+    (entry) => {
+      return !entry.data.title.startsWith("Draft");
+    }
+  );
   const otherArticles = allBlogArticles.slice(1);
-  const mostRecentArticle = allBlogArticles[0];
+  const mostRecentArticle = allBlogArticles.sort(
+    (a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+  )[0];
   return renderTemplate`${renderComponent($$result, "MainLayout", $$MainLayout, {}, { "default": async ($$result2) => renderTemplate`  ${maybeRenderHead()}<div class="grid grid-cols-1 gap-5 lg:grid-cols-2"> <div> <h1 class="text-5xl font-bold mt-4 mb-8 leading-tight xl:text-6xl">
 Articles & More
 </h1> ${renderComponent($$result2, "SearchForm", $$SearchForm, {})} </div> ${renderComponent($$result2, "MostRecentArticle", $$MostRecentArticle, { "article": mostRecentArticle })} <!-- Main Grid --> </div> <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"> ${otherArticles.slice(0, HOMEPAGE_ARTICLE_LIMIT).map((article) => renderTemplate`${renderComponent($$result2, "ArticleCard", $$ArticleCard, { "article": article })}`)} </div> ` })}`;
