@@ -7,4 +7,7 @@ export default defineConfig({
   integrations: [tailwind()],
   output: "server",
   adapter: awsAmplify(),
+  image: {
+    service: { entrypoint: "astro/assets/services/noop" },
+  },
 });

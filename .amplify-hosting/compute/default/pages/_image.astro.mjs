@@ -1,4 +1,4 @@
-import { g as getConfiguredImageService, i as imageConfig } from '../chunks/_astro_assets_BRIr_xaW.mjs';
+import { g as getConfiguredImageService, i as imageConfig } from '../chunks/_astro_assets_BuPcnlFO.mjs';
 import { isRemotePath } from '@astrojs/internal-helpers/path';
 import { isRemoteAllowed } from '@astrojs/internal-helpers/remote';
 import * as mime from 'mrmime';
@@ -33,8 +33,12 @@ async function loadRemoteImage(src, headers) {
   try {
     const res = await fetch(src, {
       // Forward all headers from the original request
-      headers
+      headers,
+      redirect: "manual"
     });
+    if (res.status >= 300 && res.status < 400) {
+      return void 0;
+    }
     if (!res.ok) {
       return void 0;
     }
@@ -60,6 +64,9 @@ const GET = async ({ request }) => {
       return new Response("Forbidden", { status: 403 });
     }
     const sourceUrl = new URL(transform.src, url.origin);
+    if (!isRemoteImage && sourceUrl.origin !== url.origin) {
+      return new Response("Forbidden", { status: 403 });
+    }
     inputBuffer = await loadRemoteImage(sourceUrl, isRemoteImage ? new Headers() : request.headers);
     if (!inputBuffer) {
       return new Response("Not Found", { status: 404 });

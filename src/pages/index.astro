@@ -7,37 +7,138 @@ import { HOMEPAGE_ARTICLE_LIMIT } from "../constants";
 import SearchForm from "../components/SearchForm.astro";
 import MostRecentArticle from "../components/MostRecentArticle.astro";
 
-const allBlogArticles: CollectionEntry<"blog">[] = await getCollection(
-  "blog",
-  (entry) => {
+const allBlogArticles: CollectionEntry<"blog">[] = (
+  await getCollection("blog", (entry) => {
     return !entry.data.title.startsWith("Draft");
-  }
-);
-const otherArticles: CollectionEntry<"blog">[] = allBlogArticles.slice(1);
-const mostRecentArticle: CollectionEntry<"blog"> = allBlogArticles.sort(
+  })
+).sort(
   (a, b) =>
-    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-)[0];
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+);
+
+const mostRecentArticle: CollectionEntry<"blog"> = allBlogArticles[0];
+const otherArticles: CollectionEntry<"blog">[] = allBlogArticles.slice(1);
 ---
 
 <MainLayout>
-  <!-- Top Grid -->
-  <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
-    <div>
-      <h1 class="text-5xl font-bold mt-4 mb-8 leading-tight xl:text-6xl">
-        Articles & More
-      </h1>
-      <SearchForm />
+  <!-- Hero Section -->
+  <section class="relative pt-8 sm:pt-16 pb-12 sm:pb-20 mb-8">
+    <!-- Warm ambient glow -->
+    <div class="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+      <div
+        class="absolute -top-20 right-1/4 w-96 h-96 bg-accent rounded-full opacity-[0.06] blur-[100px]"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 -left-20 w-72 h-72 bg-secondary rounded-full opacity-[0.05] blur-[80px]"
+      >
+      </div>
     </div>
-    <MostRecentArticle article={mostRecentArticle} />
 
-    <!-- Main Grid -->
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-12 items-start">
+      <!-- Left: editorial intro, offset from grid -->
+      <div class="lg:col-span-5 space-y-6 animate-fade-up">
+        <p
+          class="font-hand text-2xl text-accent stagger-1"
+          style="animation: fadeUp 0.6s ease both 0.15s"
+        >
+          Welcome to my corner of the web
+        </p>
+        <h1
+          class="font-display text-4xl sm:text-5xl xl:text-6xl font-bold leading-[1.1] text-primary stagger-2"
+          style="animation: fadeUp 0.6s ease both 0.3s"
+        >
+          Thoughts, stories &
+          <span class="ink-underline text-accent">reflections</span>
+        </h1>
+        <p
+          class="text-light-600 text-lg sm:text-xl leading-relaxed max-w-md stagger-3"
+          style="animation: fadeUp 0.6s ease both 0.45s"
+        >
+          A personal space for exploring web development, life lessons, and
+          everything in between. Pull up a chair.
+        </p>
+        <div
+          class="max-w-sm pt-2 stagger-4"
+          style="animation: fadeUp 0.6s ease both 0.6s"
+        >
+          <SearchForm />
+        </div>
+      </div>
+
+      <!-- Right: featured article, overlapping the grid slightly for asymmetry -->
+      <div
+        class="lg:col-span-7 lg:-mt-4"
+        style="animation: fadeIn 0.8s ease both 0.5s"
+      >
+        <MostRecentArticle article={mostRecentArticle} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Decorative divider -->
+  <div class="flex items-center gap-4 mb-12 px-4" aria-hidden="true">
+    <div
+      class="flex-1 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent"
+    >
+    </div>
+    <span class="font-hand text-accent/40 text-sm tracking-widest">~ ~ ~</span>
+    <div
+      class="flex-1 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent"
+    >
+    </div>
   </div>
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-    {
-      otherArticles
-        .slice(0, HOMEPAGE_ARTICLE_LIMIT)
-        .map((article) => <ArticleCard article={article} />)
-    }
-  </div>
+
+  <!-- Recent Articles -->
+  <section class="mb-16">
+    <div
+      class="flex items-end justify-between mb-10"
+      style="animation: fadeUp 0.6s ease both 0.2s"
+    >
+      <div>
+        <span class="font-hand text-accent text-lg">Keep reading</span>
+        <h2
+          class="font-display text-2xl sm:text-3xl font-bold text-primary mt-1"
+        >
+          More Articles
+        </h2>
+      </div>
+      <a
+        href="/articles"
+        class="hidden sm:inline-flex items-center gap-2 warm-link text-sm font-display tracking-wide text-primary hover:text-accent transition-colors duration-300 group"
+      >
+        View all
+        <svg
+          class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"
+          ></path>
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        otherArticles.slice(0, HOMEPAGE_ARTICLE_LIMIT).map((article, i) => (
+          <div style={`animation: fadeUp 0.6s ease both ${0.3 + i * 0.15}s`}>
+            <ArticleCard article={article} />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-10 text-center sm:hidden">
+      <a
+        href="/articles"
+        class="inline-flex items-center gap-2 font-display text-accent hover:text-accent-400 transition-colors duration-200"
+      >
+        View all articles
+        <span class="font-hand">→</span>
+      </a>
+    </div>
+  </section>
 </MainLayout>

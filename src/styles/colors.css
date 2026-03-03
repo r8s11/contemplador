@@ -59,17 +59,17 @@
   --color-neutral-800: 240 240 240; /* #f0f0f0 */
   --color-neutral-900: 247 247 247; /* #f7f7f7 */
 
-  /* Light (use the light end of Neutral) */
-  --color-light: 247 247 247; /* ~neutral-900 */
-  --color-light-100: 240 240 240; /* neutral-800 */
-  --color-light-200: 232 232 232; /* neutral-700 */
-  --color-light-300: 224 224 224; /* neutral-600 */
-  --color-light-400: 217 217 217; /* neutral-500 */
-  --color-light-500: 173 173 173; /* neutral-400 */
-  --color-light-600: 130 130 130; /* neutral-300 */
-  --color-light-700: 87 87 87; /* neutral-200 */
-  --color-light-800: 43 43 43; /* neutral-100 */
-  --color-light-900: 0 16 33; /* tie into primary base for deepest */
+  /* Light — warm paper / parchment tones */
+  --color-light: 250 247 240; /* warm cream #FAF7F0 */
+  --color-light-100: 245 240 230; /* #F5F0E6 */
+  --color-light-200: 237 230 216; /* #EDE6D8 */
+  --color-light-300: 224 214 196; /* #E0D6C4 */
+  --color-light-400: 212 200 178; /* #D4C8B2 */
+  --color-light-500: 176 164 142; /* #B0A48E */
+  --color-light-600: 138 126 104; /* #8A7E68 */
+  --color-light-700: 99 90 72; /* #635A48 */
+  --color-light-800: 61 54 42; /* #3D362A */
+  --color-light-900: 26 22 16; /* #1A1610 */
 
   /* Semantic */
   --color-success: 7 154 157; /* secondary-600 */

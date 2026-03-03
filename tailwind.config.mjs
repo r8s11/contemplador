@@ -3,6 +3,40 @@ export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      fontFamily: {
+        display: ['"Fraunces"', "Georgia", "serif"],
+        body: ['"Newsreader"', "Georgia", "serif"],
+        hand: ['"Caveat"', "cursive"],
+      },
+      animation: {
+        "fade-up": "fadeUp 0.7s ease-out both",
+        "fade-in": "fadeIn 0.6s ease-out both",
+        "slide-in": "slideIn 0.5s ease-out both",
+        "draw-line": "drawLine 0.8s ease-out both",
+        float: "float 6s ease-in-out infinite",
+      },
+      keyframes: {
+        fadeUp: {
+          "0%": { opacity: "0", transform: "translateY(24px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        slideIn: {
+          "0%": { opacity: "0", transform: "translateX(-16px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        drawLine: {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-12px)" },
+        },
+      },
       colors: {
         // Primary colors (Rich Black)
         primary: {

@@ -8,21 +8,51 @@ interface Props {
 }
 ---
 
-<div class="flex justify-between mt-10">
+<nav
+  class="flex items-center justify-between mt-12 pt-8 border-t border-accent/10"
+  aria-label="Pagination"
+>
   <a
     href={"/articles?page=" + (currentPage - 1)}
-    class={disablePrevious
-      ? "inline-block bg-neutral-100 px-3 py-2 text-neutral-400 rounded-lg pointer-events-none"
-      : "inline-block bg-accent-100 px-3 py-2 text-accent-700 rounded-lg hover:bg-accent hover:text-light transition-colors duration-200"}
+    class:list={[
+      "inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+      disablePrevious
+        ? "bg-light-100 text-light-400 cursor-not-allowed pointer-events-none"
+        : "bg-white text-primary border border-light-300 hover:border-accent hover:text-accent shadow-sm hover:shadow-md",
+    ]}
+    aria-disabled={disablePrevious ? "true" : undefined}
   >
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M15 19l-7-7 7-7"></path>
+    </svg>
     Previous
   </a>
+
+  <span class="font-hand text-xl text-light-500">
+    Page {currentPage}
+  </span>
+
   <a
     href={"/articles?page=" + (currentPage + 1)}
-    class={disableNext
-      ? "inline-block bg-neutral-100 px-3 py-2 text-neutral-400 rounded-lg pointer-events-none"
-      : "inline-block bg-accent-100 px-3 py-2 text-accent-700 rounded-lg hover:bg-accent hover:text-light transition-colors duration-200"}
+    class:list={[
+      "inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200",
+      disableNext
+        ? "bg-light-100 text-light-400 cursor-not-allowed pointer-events-none"
+        : "bg-accent text-light hover:bg-accent-400 shadow-sm hover:shadow-md",
+    ]}
+    aria-disabled={disableNext ? "true" : undefined}
   >
     Next
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 5l7 7-7 7"></path>
+    </svg>
   </a>
-</div>
+</nav>
