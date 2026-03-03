@@ -12,7 +12,7 @@ if (tag === undefined) {
 }
 
 const allBlogArticles: CollectionEntry<"blog">[] = (
-  await getCollection("blog")
+  await getCollection("blog", (entry) => !entry.data.title.startsWith("Draft"))
 ).sort(
   (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
     b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),

@@ -49,7 +49,7 @@ export default {
           600: "rgb(var(--color-primary-300) / <alpha-value>)",
           700: "rgb(var(--color-primary-200) / <alpha-value>)",
           800: "rgb(var(--color-primary-100) / <alpha-value>)",
-          900: "rgb(var(--color-primary-100) / <alpha-value>)", // darkest
+          900: "rgb(var(--color-primary) / <alpha-value>)", // darkest
           DEFAULT: "rgb(var(--color-primary) / <alpha-value>)",
         },
         // Secondary colors (Midnight Green)
@@ -63,7 +63,7 @@ export default {
           600: "rgb(var(--color-secondary-300) / <alpha-value>)",
           700: "rgb(var(--color-secondary-200) / <alpha-value>)",
           800: "rgb(var(--color-secondary-100) / <alpha-value>)",
-          900: "rgb(var(--color-secondary-100) / <alpha-value>)",
+          900: "rgb(var(--color-secondary) / <alpha-value>)",
           DEFAULT: "rgb(var(--color-secondary) / <alpha-value>)",
         },
         // Accent colors (Fulvous)
@@ -77,7 +77,7 @@ export default {
           600: "rgb(var(--color-accent-300) / <alpha-value>)",
           700: "rgb(var(--color-accent-200) / <alpha-value>)",
           800: "rgb(var(--color-accent-100) / <alpha-value>)",
-          900: "rgb(var(--color-accent-100) / <alpha-value>)",
+          900: "rgb(var(--color-accent) / <alpha-value>)",
           DEFAULT: "rgb(var(--color-accent) / <alpha-value>)",
         },
         // Azure colors (Blue)
@@ -91,7 +91,7 @@ export default {
           600: "rgb(var(--color-azure-300) / <alpha-value>)",
           700: "rgb(var(--color-azure-200) / <alpha-value>)",
           800: "rgb(var(--color-azure-100) / <alpha-value>)",
-          900: "rgb(var(--color-azure-100) / <alpha-value>)",
+          900: "rgb(var(--color-azure) / <alpha-value>)",
           DEFAULT: "rgb(var(--color-azure) / <alpha-value>)",
         },
         // Neutral colors (Platinum)
@@ -105,7 +105,7 @@ export default {
           600: "rgb(var(--color-neutral-300) / <alpha-value>)",
           700: "rgb(var(--color-neutral-200) / <alpha-value>)",
           800: "rgb(var(--color-neutral-100) / <alpha-value>)",
-          900: "rgb(var(--color-neutral-100) / <alpha-value>)",
+          900: "rgb(var(--color-neutral) / <alpha-value>)",
           DEFAULT: "rgb(var(--color-neutral) / <alpha-value>)",
         },
         // Light colors

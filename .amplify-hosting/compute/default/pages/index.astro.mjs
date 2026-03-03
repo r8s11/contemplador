@@ -1,9 +1,9 @@
 /* empty css                                 */
 import { c as createComponent, b as createAstro, m as maybeRenderHead, e as addAttribute, a as renderTemplate, r as renderComponent } from '../chunks/astro/server_DpVWNvDj.mjs';
 import 'piccolore';
-import { f as formatDate, $ as $$MainLayout, H as HOMEPAGE_ARTICLE_LIMIT } from '../chunks/MainLayout_DO-PG9VO.mjs';
-import { g as getCollection } from '../chunks/_astro_content_DmTC5oBN.mjs';
-import { $ as $$ArticleCard } from '../chunks/ArticleCard_CMF2OBuy.mjs';
+import { f as formatDate, $ as $$MainLayout, H as HOMEPAGE_ARTICLE_LIMIT } from '../chunks/MainLayout_BaURj9t1.mjs';
+import { g as getCollection } from '../chunks/_astro_content_Y6Zlw7R_.mjs';
+import { $ as $$ArticleCard } from '../chunks/ArticleCard_BEvnruVv.mjs';
 import { $ as $$SearchForm } from '../chunks/SearchForm_BFE0zwHc.mjs';
 import 'clsx';
 export { renderers } from '../renderers.mjs';
@@ -36,7 +36,7 @@ Thoughts, stories &
 <span class="ink-underline text-accent">reflections</span> </h1> <p class="text-light-600 text-lg sm:text-xl leading-relaxed max-w-md stagger-3" style="animation: fadeUp 0.6s ease both 0.45s">
 A personal space for exploring web development, life lessons, and
           everything in between. Pull up a chair.
-</p> <div class="max-w-sm pt-2 stagger-4" style="animation: fadeUp 0.6s ease both 0.6s"> ${renderComponent($$result2, "SearchForm", $$SearchForm, {})} </div> </div> <!-- Right: featured article, overlapping the grid slightly for asymmetry --> <div class="lg:col-span-7 lg:-mt-4" style="animation: fadeIn 0.8s ease both 0.5s"> ${renderComponent($$result2, "MostRecentArticle", $$MostRecentArticle, { "article": mostRecentArticle })} </div> </div> </section>  <div class="flex items-center gap-4 mb-12 px-4" aria-hidden="true"> <div class="flex-1 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div> <span class="font-hand text-accent/40 text-sm tracking-widest">~ ~ ~</span> <div class="flex-1 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div> </div>  <section class="mb-16"> <div class="flex items-end justify-between mb-10" style="animation: fadeUp 0.6s ease both 0.2s"> <div> <span class="font-hand text-accent text-lg">Keep reading</span> <h2 class="font-display text-2xl sm:text-3xl font-bold text-primary mt-1">
+</p> <div class="max-w-sm pt-2 stagger-4" style="animation: fadeUp 0.6s ease both 0.6s"> ${renderComponent($$result2, "SearchForm", $$SearchForm, {})} </div> </div> <!-- Right: featured article, overlapping the grid slightly for asymmetry --> <div class="lg:col-span-7 lg:-mt-4" style="animation: fadeIn 0.8s ease both 0.5s"> ${mostRecentArticle && renderTemplate`${renderComponent($$result2, "MostRecentArticle", $$MostRecentArticle, { "article": mostRecentArticle })}`} </div> </div> </section>  <div class="flex items-center gap-4 mb-12 px-4" aria-hidden="true"> <div class="flex-1 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div> <span class="font-hand text-accent/40 text-sm tracking-widest">~ ~ ~</span> <div class="flex-1 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent"></div> </div>  <section class="mb-16"> <div class="flex items-end justify-between mb-10" style="animation: fadeUp 0.6s ease both 0.2s"> <div> <span class="font-hand text-accent text-lg">Keep reading</span> <h2 class="font-display text-2xl sm:text-3xl font-bold text-primary mt-1">
 More Articles
 </h2> </div> <a href="/articles" class="hidden sm:inline-flex items-center gap-2 warm-link text-sm font-display tracking-wide text-primary hover:text-accent transition-colors duration-300 group">
 View all

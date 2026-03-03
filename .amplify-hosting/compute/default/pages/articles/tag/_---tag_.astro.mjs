@@ -1,9 +1,9 @@
 /* empty css                                       */
 import { c as createComponent, b as createAstro, r as renderComponent, a as renderTemplate, m as maybeRenderHead } from '../../../chunks/astro/server_DpVWNvDj.mjs';
 import 'piccolore';
-import { c as capitalize, $ as $$MainLayout } from '../../../chunks/MainLayout_DO-PG9VO.mjs';
-import { $ as $$ArticleCard } from '../../../chunks/ArticleCard_CMF2OBuy.mjs';
-import { g as getCollection } from '../../../chunks/_astro_content_DmTC5oBN.mjs';
+import { c as capitalize, $ as $$MainLayout } from '../../../chunks/MainLayout_BaURj9t1.mjs';
+import { $ as $$ArticleCard } from '../../../chunks/ArticleCard_BEvnruVv.mjs';
+import { g as getCollection } from '../../../chunks/_astro_content_Y6Zlw7R_.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 const $$Astro = createAstro();
@@ -14,7 +14,7 @@ const $$ = createComponent(async ($$result, $$props, $$slots) => {
   if (tag === void 0) {
     throw new Error("Tag is required");
   }
-  const allBlogArticles = (await getCollection("blog")).sort(
+  const allBlogArticles = (await getCollection("blog", (entry) => !entry.data.title.startsWith("Draft"))).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
   const tagArticles = allBlogArticles.filter(

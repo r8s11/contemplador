@@ -1,4 +1,4 @@
-import { g as getCollection } from '../../chunks/_astro_content_DmTC5oBN.mjs';
+import { g as getCollection } from '../../chunks/_astro_content_Y6Zlw7R_.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const GET = async ({ url }) => {
@@ -18,13 +18,15 @@ const GET = async ({ url }) => {
     );
   }
   const allBlogArticles = await getCollection(
-    "blog"
+    "blog",
+    (entry) => !entry.data.title.startsWith("Draft")
   );
+  const q = query.toLowerCase();
   const searchResult = allBlogArticles.filter((article) => {
-    const titleMatch = article.data.title.toLowerCase().includes(query.toLowerCase());
-    const BodyMatch = article.body.toLowerCase().includes(query.toLowerCase());
-    const slugMatch = article.slug.toLowerCase().includes(query.toLowerCase());
-    return titleMatch || BodyMatch || slugMatch;
+    const titleMatch = article.data.title.toLowerCase().includes(q);
+    const bodyMatch = article.body.toLowerCase().includes(q);
+    const slugMatch = article.slug.toLowerCase().includes(q);
+    return titleMatch || bodyMatch || slugMatch;
   });
   return new Response(JSON.stringify(searchResult), {
     status: 200,

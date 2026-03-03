@@ -1,22 +1,29 @@
 /* empty css                                    */
 import { c as createComponent, b as createAstro, r as renderComponent, a as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_DpVWNvDj.mjs';
 import 'piccolore';
-import { $ as $$MainLayout } from '../../chunks/MainLayout_DO-PG9VO.mjs';
-import { $ as $$ArticleCard } from '../../chunks/ArticleCard_CMF2OBuy.mjs';
+import { $ as $$MainLayout } from '../../chunks/MainLayout_BaURj9t1.mjs';
+import { $ as $$ArticleCard } from '../../chunks/ArticleCard_BEvnruVv.mjs';
 import { $ as $$SearchForm } from '../../chunks/SearchForm_BFE0zwHc.mjs';
-import { g as getCollection } from '../../chunks/_astro_content_DmTC5oBN.mjs';
+import { g as getCollection } from '../../chunks/_astro_content_Y6Zlw7R_.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$Astro = createAstro();
 const $$Search = createComponent(async ($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$Search;
-  const query = Astro2.url.searchParams.get("query");
-  const allBlogArticles = await getCollection("blog");
+  const query = Astro2.url.searchParams.get("query") ?? "";
+  if (!query) {
+    return Astro2.redirect("/articles");
+  }
+  const allBlogArticles = await getCollection(
+    "blog",
+    (entry) => !entry.data.title.startsWith("Draft")
+  );
+  const q = query.toLowerCase();
   const searchResults = allBlogArticles.filter((article) => {
-    const titleMatch = article.data.title.toLowerCase().includes(query.toLowerCase());
-    const bodyMatch = article.body.toLocaleLowerCase().includes(query.toLowerCase());
-    const slugMatch = article.slug.toLowerCase().includes(query.toLocaleLowerCase());
+    const titleMatch = article.data.title.toLowerCase().includes(q);
+    const bodyMatch = article.body.toLocaleLowerCase().includes(q);
+    const slugMatch = article.slug.toLowerCase().includes(q);
     return titleMatch || bodyMatch || slugMatch;
   });
   return renderTemplate`${renderComponent($$result, "MainLayout", $$MainLayout, { "title": "Search Results" }, { "default": async ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="py-4"> <!-- Back link --> <a href="/articles" class="inline-flex items-center gap-2 text-light-600 hover:text-accent font-medium text-sm mb-6 transition-colors duration-200 group"> <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path> </svg>

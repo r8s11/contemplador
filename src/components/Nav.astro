@@ -22,15 +22,24 @@ const isActive = (path: string) => {
 };
 ---
 
-<nav class="sticky top-0 z-50 border-b border-accent/10" id="main-nav">
+<nav
+  class="sticky top-0 z-50 border-b border-accent/10"
+  id="main-nav"
+  aria-label="Main navigation"
+>
   <div class="absolute inset-0 bg-light/90 backdrop-blur-md"></div>
   <div
     class="relative max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-6 py-4"
   >
     <!-- Logo / wordmark -->
-    <a href="/" class="flex items-center gap-3 group">
+    <a
+      href="/"
+      class="flex items-center gap-3 group"
+      aria-label="El Contemplador — home"
+    >
       <span
         class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-accent text-lg shadow-md group-hover:shadow-lg transition-shadow duration-300"
+        aria-hidden="true"
       >
         🤔
       </span>
@@ -113,6 +122,9 @@ const isActive = (path: string) => {
         <li class="relative group">
           <button
             class="nav-link flex items-center py-2 px-4 rounded-lg font-display text-sm tracking-wide text-light-700 hover:text-accent transition-all duration-200"
+            id="categories-btn"
+            aria-haspopup="true"
+            aria-expanded="false"
           >
             Categories
             <svg
@@ -121,6 +133,7 @@ const isActive = (path: string) => {
               stroke="currentColor"
               stroke-width="2"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 stroke-linecap="round"
@@ -131,6 +144,9 @@ const isActive = (path: string) => {
 
           <div
             class="absolute left-0 mt-2 w-56 bg-light border border-accent/10 rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden"
+            id="categories-menu"
+            role="menu"
+            aria-labelledby="categories-btn"
           >
             <div class="p-2">
               {
@@ -138,6 +154,7 @@ const isActive = (path: string) => {
                   <a
                     href={`/articles/tag/${tag}`}
                     class="flex items-center gap-2 px-4 py-2.5 text-sm text-light-700 hover:bg-accent/8 hover:text-accent rounded-xl transition-all duration-200"
+                    role="menuitem"
                   >
                     <span class="font-hand text-accent text-base">#</span>
                     <span class="font-display text-sm">{capitalize(tag)}</span>
@@ -195,13 +212,51 @@ const isActive = (path: string) => {
 
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
-    const btn = document.querySelector(
+    // Mobile menu toggle with aria-expanded sync
+    const mobileBtn = document.querySelector(
       '[data-collapse-toggle="navbar-default"]',
     );
-    const menu = document.getElementById("navbar-default");
-    if (btn && menu) {
-      btn.addEventListener("click", () => {
-        menu.classList.toggle("hidden");
+    const mobileMenu = document.getElementById("navbar-default");
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        const isOpen = !mobileMenu.classList.contains("hidden");
+        mobileBtn.setAttribute("aria-expanded", String(isOpen));
+      });
+    }
+
+    // Categories dropdown — keyboard support
+    const catBtn = document.getElementById("categories-btn");
+    const catMenu = document.getElementById("categories-menu");
+    if (catBtn && catMenu) {
+      const openMenu = () => {
+        catBtn.setAttribute("aria-expanded", "true");
+        catMenu.classList.remove("opacity-0", "invisible");
+        catMenu.classList.add("opacity-100", "visible");
+      };
+      const closeMenu = () => {
+        catBtn.setAttribute("aria-expanded", "false");
+        catMenu.classList.add("opacity-0", "invisible");
+        catMenu.classList.remove("opacity-100", "visible");
+      };
+
+      catBtn.addEventListener("click", () => {
+        const isOpen = catBtn.getAttribute("aria-expanded") === "true";
+        isOpen ? closeMenu() : openMenu();
+      });
+
+      catBtn.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeMenu();
+          catBtn.focus();
+        }
+      });
+
+      catMenu.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeMenu();
+          catBtn.focus();
+        }
       });
     }
   });
