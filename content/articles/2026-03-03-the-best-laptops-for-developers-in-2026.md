@@ -8,7 +8,7 @@ tags:
   - tech
   - hardware
   - "2026"
-slug: "{{year}}"
+slug: "{{year}}-{{title}}"
 ---
 
 Developers need machines that handle IDEs, containers, VMs, and long compile cycles while staying portable and quiet. In 2025, these models stand out for reliability, performance, and developer-friendly features.
