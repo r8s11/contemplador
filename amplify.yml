@@ -3,15 +3,16 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
+        - corepack enable
+        - yarn install --immutable
     build:
       commands:
-        - npm run build
-        - npm prune --omit=dev
+        - yarn build
   artifacts:
     baseDirectory: .amplify-hosting
     files:
       - '**/*'
   cache:
     paths:
+      - .yarn/cache/**/*
       - node_modules/**/*
