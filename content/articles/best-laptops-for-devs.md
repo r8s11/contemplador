@@ -1,9 +1,14 @@
 ---
-title: "The best laptops for developers in 2025"
-pubDate: "2025-08-25"
-author: "Roosevelt Segura"
-image: "/images/laptops-for-devs.jpg"
-tags: ["tech", "hardware", "2025"]
+title: The best laptops for developers in 2025
+pubDate: 2025-08-25
+pubDdate: 2026-03-03T19:11:00.000-05:00
+author: Roosevelt Segura
+image: /public/m4-macbook-air-15-11.webp
+tags:
+  - tech
+  - hardware
+  - "2025"
+slug: "{{title}}"
 ---
 
 Developers need machines that handle IDEs, containers, VMs, and long compile cycles while staying portable and quiet. In 2025, these models stand out for reliability, performance, and developer-friendly features.
