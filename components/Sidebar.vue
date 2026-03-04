@@ -37,7 +37,7 @@ const props = defineProps<{
 }>()
 
 const socialLinks = [
-    { href: 'mailto:roosevelt@contemplador.dev', label: 'Email', icon: '✉️' },
+    { href: 'mailto:roosevelt@roosevelt.info', label: 'Email', icon: '✉️' },
     { href: 'https://www.linkedin.com/in/rooseveltbsegura', label: 'LinkedIn', icon: '💼' },
 
 ]
