@@ -5,6 +5,8 @@ frontend:
       commands:
         - nvm install 20
         - nvm use 20
+        - npm cache clean --force
+        - rm -rf node_modules package-lock.json
         - corepack enable
         - yarn install
     build:
@@ -13,8 +15,7 @@ frontend:
   artifacts:
     baseDirectory: .amplify-hosting
     files:
-      - '**/*'
+      - "**/*"
   cache:
     paths:
       - .yarn/cache/**/*
-      - node_modules/**/*
