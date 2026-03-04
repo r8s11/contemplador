@@ -18,5 +18,13 @@ dist
 # Claude
 .claude
 
+# Nuxt Content data
+.data/
+
 # Misc
 *.log
+
+# amplify
+.amplify
+amplify_outputs*
+amplifyconfiguration*
