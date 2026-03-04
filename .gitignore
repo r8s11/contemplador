@@ -1,3 +1,22 @@
+# Dependencies
 node_modules
+
+# Nuxt build output
+.nuxt
+.output
+dist
+
+# AWS Amplify
 .amplify-hosting
+
+# IDE / OS
+.DS_Store
+*.sw?
+.vscode
+.idea
+
+# Claude
 .claude
+
+# Misc
+*.log
