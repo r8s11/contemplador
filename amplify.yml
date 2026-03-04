@@ -5,10 +5,8 @@ frontend:
       commands:
         - nvm install 20
         - nvm use 20
-        - npm cache clean --force
-        - rm -rf node_modules package-lock.json
         - corepack enable
-        - yarn install
+        - yarn install --immutable || yarn install
     build:
       commands:
         - yarn build
@@ -18,4 +16,5 @@ frontend:
       - "**/*"
   cache:
     paths:
+      - node_modules/**/*
       - .yarn/cache/**/*
